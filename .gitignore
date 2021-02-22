@@ -1,2 +1,5 @@
 # go build output
 sample-exec-plugin
+
+# junk
+untracked.txt
