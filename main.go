@@ -77,7 +77,7 @@ func exampleExecCredentialBusinessLogic(ec runtime.Object) {
 		dief("cast failed: %#v\n", ec)
 	}
 
-	if !ecBeta.Spec.Interactive {
+	if !ecBeta.Spec.IsInteractive {
 		dief("exec plugin not running in interactive mode, please run in terminal")
 	}
 
