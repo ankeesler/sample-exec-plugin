@@ -77,6 +77,10 @@ func exampleExecCredentialBusinessLogic(ec runtime.Object) {
 		dief("cast failed: %#v\n", ec)
 	}
 
+	if !ecBeta.Spec.Interactive {
+		dief("exec plugin not running in interactive mode, please run in terminal")
+	}
+
 	reallyPrintf("enter token: ")
 	token, err := bufio.NewReader(os.Stdin).ReadString('\n')
 	if err != nil {

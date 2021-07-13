@@ -17,7 +17,7 @@ function usage() {
   echo "usage: $me [-ahknoquv]"
   echo "  -a      set kubectl args (default: $args)"
   echo "  -h      print this usage"
-  echo "  -k      set kubectl to use (default: $kubectl)"
+  echo "  -k      set kubectl binary or k/k repo path to build from source (default: $kubectl)"
   echo "  -n      skip setting user (default: $skip_user)"
   echo "  -o      set output build file (default: $exec_plugin)"
   echo "  -q      set exec plugin to be quiet (default: $quiet)"
@@ -41,6 +41,11 @@ esac
 done
 
 cd "$repo_root"
+
+if [[ -d "$kubectl" ]]; then
+  make -C "$kubectl" kubectl
+  kubectl="${kubectl}/_output/local/go/bin/kubectl"
+fi
 
 go build -o "$exec_plugin"
 
